@@ -104,6 +104,7 @@ class MolyDataTableFactory extends AbstractMolyScopeAccessor
     protected $multiSortMeta;
 
 
+    protected $_items;
 
 
 
@@ -133,6 +134,28 @@ class MolyDataTableFactory extends AbstractMolyScopeAccessor
         $this->currentPage = $this->perPage && $this->setCurrentPage();        
     }
 
+   
+
+    /**
+     * Initialization Modal | Builder
+     *
+     * @param [type] $items
+     * @return void
+     */
+    public function init($items)
+    {
+        if ( $items instanceof \Illuminate\Database\Eloquent\Model )
+        {
+            $this->_items = $items;
+        } 
+        
+        if ( $items instanceof \Illuminate\Database\Eloquent\Builder )
+        {
+            $this->_items = $items;
+        } 
+
+        return $this;
+    }
 
     /**
      * Create Datatable
@@ -211,11 +234,11 @@ class MolyDataTableFactory extends AbstractMolyScopeAccessor
      */
     public function ifInputHasSearch($items) 
     {
-        $items = $this->globalSearchFilters($items);
+        $items = $this->_globalSearchFilters($items);
 
-        $items = $this->multiColumnFilters($items);
+        $items = $this->_multiColumnFilters($items);
 
-        $items = $this->customKeyFilters($items);
+        $items = $this->_customKeyFilters($items);
         
         return $items;
     }
@@ -226,7 +249,7 @@ class MolyDataTableFactory extends AbstractMolyScopeAccessor
      * @param array $items
      * @return \Illuminate\Database\Eloquent\Builder $items
      */
-    protected function globalSearchFilters(Builder $items) : Builder
+    protected function _globalSearchFilters(Builder $items) : Builder
     {
         if($this->globalFilter)
         {
@@ -268,7 +291,7 @@ class MolyDataTableFactory extends AbstractMolyScopeAccessor
      * @param array $items
      * @return \Illuminate\Database\Eloquent\Builder $items
      */
-    protected function multiColumnFilters(Builder $items) : Builder
+    protected function _multiColumnFilters(Builder $items) : Builder
     {
         if($this->filters)
         {
@@ -323,7 +346,7 @@ class MolyDataTableFactory extends AbstractMolyScopeAccessor
      * @param array $items
      * @return \Illuminate\Database\Eloquent\Builder $items
      */
-    protected function customKeyFilters(Builder $items) : Builder
+    protected function _customKeyFilters(Builder $items) : Builder
     {
         if($this->customFilters)
         {   
@@ -377,6 +400,19 @@ class MolyDataTableFactory extends AbstractMolyScopeAccessor
 
         return $items;
     }
+    
+
+    /**
+     * Check custom filter options
+     *
+     * @param array $items
+     * @return \Illuminate\Database\Eloquent\Builder $items
+     */
+    public function customKeyFilters(Builder $items) : Builder 
+    {
+        return  $this->_customKeyFilters($items);
+    }
+
 
 
     /**
@@ -496,6 +532,7 @@ class MolyDataTableFactory extends AbstractMolyScopeAccessor
     
         return $items;
     }
+
 
 
     /**
