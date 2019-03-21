@@ -18,7 +18,7 @@ use Carbon\Carbon;
  * Laravel Data Table is distributed under MIT
  * Copyright (C) 2019 Karthikesan Uthirapathy <karthi.php.developer at gmail dot com>
  *
- * @package uka\datatable
+ * @package kodevz\molydatatable
  */
 class MolyDataTableFactory extends AbstractMolyScopeAccessor
 {   
@@ -103,7 +103,11 @@ class MolyDataTableFactory extends AbstractMolyScopeAccessor
      */
     protected $multiSortMeta;
 
-
+    /**
+     * $_items
+     *
+     * @var \Illuminate\Database\Eloquent\Model | \Illuminate\Database\Eloquent\Builder
+     */
     protected $_items;
 
 
