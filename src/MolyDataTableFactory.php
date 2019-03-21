@@ -13,7 +13,7 @@ use Carbon\Carbon;
 
 
 /**
- * Class UkaDataTableFactory
+ * Class MolyDatatableFactory 
  *
  * Laravel Data Table is distributed under MIT
  * Copyright (C) 2019 Karthikesan Uthirapathy <karthi.php.developer at gmail dot com>
