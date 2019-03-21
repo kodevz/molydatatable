@@ -1,0 +1,40 @@
+{
+    "name": "kodevz/molydatatable",
+    "description": "\"Moly Laravel Data table\"",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "karthikesan Uthirapathy",
+            "email": "karthi.php.developer@gmail.com"
+        }
+    ],
+    "require": {
+        "illuminate/support": "~5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~7.0",
+        "mockery/mockery": "^1.1",
+        "orchestra/testbench": "~3.0",
+        "sempro/phpunit-pretty-print": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kodevz\\MolyDatatable\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Kodevz\\MolyDatatable\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Kodevz\\MolyDatatable\\Providers\\MolyDataTableServiceProvider"
+            ],
+            "aliases": {
+                "molydatatable": "Kodevz\\MolyDatatable\\Facades\\MolyDataTable"
+            }
+        }
+    }
+}
